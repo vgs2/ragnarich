@@ -7,18 +7,25 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
-  api:
-    environment:
-      - PYTHONUNBUFFERED=1
-    image: api
-    restart: always
+      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - ./api/:/code
-    ports: 
-      - "5000:5000"
+      - db:/var/lib/postgresql/data/pgdata
+
+  # api:
+  #   container_name: api
+  #   environment:
+  #     - POSTGRES_DB=postgres
+  #     - POSTGRES_USER=echoenergiadb
+  #     - POSTGRES_PASSWORD=eVeSUAK4mQ8EH3y3LLzeXQM9
+  #     - PYTHONUNBUFFERED=1
+  #   image: api
+  #   restart: always
+  #   volumes:
+  #     - ./api/:/code
+  #     - rdh:/code/rdh
+  #   ports: 
+  #     - "5000:5000"
 
 volumes:
-  ampere_vol:
-  scraper_vol:
+  db:
   

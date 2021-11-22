@@ -1,9 +1,10 @@
 CREATE TABLE store(
-  id integer PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   nome varchar(50) NOT NULL,
+  creation_date date NOT NULL,
   map varchar(50) NOT NULL,
   x integer NOT NULL,
-  y integer NOT NULL
+  y integer NOT NULL,
 );
   
 CREATE TABLE vendor(
@@ -31,6 +32,7 @@ CREATE TABLE fact_table(
     store_id integer,
     amount integer,
     price integer,
+    f_timestamp date,
     CONSTRAINT fk_item FOREIGN KEY(item_id) REFERENCES item(id),
     CONSTRAINT fk_vendor FOREIGN KEY(vendor_id) REFERENCES vendor(id),
     CONSTRAINT fk_store FOREIGN KEY(store_id) REFERENCES store(id)
